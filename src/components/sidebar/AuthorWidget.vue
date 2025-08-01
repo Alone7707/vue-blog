@@ -1,6 +1,7 @@
 <script setup>
 import { useStore } from '@/store';
 import Card from '@/components/common/Card.vue'
+import ImageWithLoading from '@/components/common/ImageWithLoading.vue'
 
 const store = useStore()
 const author = {
@@ -14,7 +15,7 @@ const author = {
 <template>
   <Card title="关于作者">
     <div class="author-info">
-      <img :src="author.avatar" :alt="author.name" class="author-avatar">
+      <ImageWithLoading :src="author.avatar" :alt="author.name" classes="author-avatar" width="80px" height="80px" />
       <div class="author-details">
         <h4 class="author-name">{{ author.name }}</h4>
         <p class="author-bio">{{ author.tag }}</p>

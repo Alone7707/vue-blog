@@ -1,30 +1,27 @@
 <script setup>
-import { useStore } from '@/store'
-const store = useStore()
-const skills = [
-  { name: 'JavaScript', level: 90 },
-  { name: 'Vue.js', level: 85 },
-  { name: 'Node.js', level: 80 },
-  { name: '写作', level: 75 },
-  { name: '摄影', level: 70 }
-]
+import { ref, onMounted } from 'vue'
+import { getAbout } from '@/api'
+import Card from '@/components/common/Card.vue'
+import Loading from '@/components/common/Loading.vue'
+import ImageWithLoading from '@/components/common/ImageWithLoading.vue'
 
-const timeline = [
-  { year: '2024', event: '开始写作技术博客，分享学习心得' },
-  { year: '2023', event: '转向全栈开发，深入学习前后端技术' },
-  { year: '2022', event: '开始接触Vue.js，被其简洁优雅所吸引' },
-  { year: '2021', event: '正式踏入软件开发行业' }
-]
+const aboutMe = ref({})
+const skills = ref([])
+const timeline = ref([])
+const loading = ref(true)
 
-const aboutMe = {
-  name: store.blogInfo.name,
-  avatar: store.blogInfo.avatar,
-  tag: store.blogInfo.tag,
-  bio: store.blogInfo.introduce,
-  mail: store.blogInfo.mail,
-  github: store.blogInfo.github,
-  wechat: store.blogInfo.wechat
-}
+onMounted(async () => {
+  try {
+    const { data } = await getAbout()
+    aboutMe.value = data.about
+    skills.value = data.skills
+    timeline.value = data.timeline
+  } catch (error) {
+    console.error('获取关于页面数据失败:', error)
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <template>
@@ -32,7 +29,7 @@ const aboutMe = {
     <div class="about-page">
       <div class="hero-section">
         <div class="hero-content">
-          <img :src="aboutMe.avatar" :alt="aboutMe.name" class="hero-avatar">
+          <ImageWithLoading :src="aboutMe.avatar" :alt="aboutMe.name" classes="hero-avatar" width="150px" height="150px" />
           <div class="hero-text">
             <h1>关于我</h1>
             <p class="hero-subtitle">{{ aboutMe.tag }}</p>

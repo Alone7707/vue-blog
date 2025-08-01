@@ -1,6 +1,7 @@
 <script setup>
 import { dateFormat } from '@/utils'
 import { computed } from 'vue';
+import ImageWithLoading from '@/components/common/ImageWithLoading.vue';
 
 const props = defineProps({
   post: {
@@ -17,7 +18,7 @@ const formatDate = computed(() => {
 <template>
   <article class="post-card">
     <router-link :to="`/post/${post.post_id}`" class="post-image-link">
-      <img :src="post.cover" :alt="post.title" class="post-image">
+      <ImageWithLoading :src="post.cover" :alt="post.title" classes="post-image" width="100%" height="200px" />
     </router-link>    
     <div class="post-content">
       <h2 class="post-title">
@@ -57,17 +58,8 @@ const formatDate = computed(() => {
 
 .post-image-link {
   display: block;
-}
-
-.post-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform 0.3s;
-  
-  &:hover {
-    transform: scale(1.05);
-  }
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
 }
 
 .post-content {

@@ -10,6 +10,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/github-dark-dimmed.css'
 import { message } from '@/utils/message'
 import Loading from '@/components/common/Loading.vue'
+import ImageWithLoading from '@/components/common/ImageWithLoading.vue'
 
 const loading = ref(false)
 
@@ -163,6 +164,7 @@ onUnmounted(() => {
           <template v-else>
             <!-- 文章头部 -->
             <header class="post-header">
+              <h1 class="post-title">{{ posts.title }}</h1>
               <div class="post-meta">
                 <router-link v-if="posts.category" :to="`/category/${posts.category.category_id}`"
                   class="post-category">
@@ -171,9 +173,6 @@ onUnmounted(() => {
                 <span class="post-date">{{ formatDate }}</span>
                 <span class="post-read-time">{{ posts.readTime }}</span>
               </div>
-
-              <h1 class="post-title">{{ posts.title }}</h1>
-
               <div class="post-info">
                 <div class="author-info">
                   <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
@@ -200,7 +199,7 @@ onUnmounted(() => {
 
             <!-- 文章封面 -->
             <div class="post-image">
-              <img :src="posts.cover" :alt="posts.title">
+              <ImageWithLoading :src="posts.cover" :alt="posts.title" width="100%" height="300px" />
             </div>
 
             <!-- 文章内容 -->
@@ -230,7 +229,7 @@ onUnmounted(() => {
               <div class="related-list">
                 <div v-if="relatedPost.prev" class="related-item">
                   <router-link :to="`/post/${relatedPost.prev.post_id}`" class="related-link">
-                    <img :src="relatedPost.prev.cover" :alt="relatedPost.prev.title" class="related-image">
+                    <ImageWithLoading :src="relatedPost.prev.cover" :alt="relatedPost.prev.title" classes="related-image" width="100%" height="100%" />
                     <div class="related-content">
                       <h4>{{ relatedPost.prev.title }}</h4>
                       <p class="related-excerpt">{{ relatedPost.prev.excerpt }}</p>
@@ -241,7 +240,7 @@ onUnmounted(() => {
                 </div>
                 <div v-if="relatedPost.next" class="related-item">
                   <router-link :to="`/post/${relatedPost.next.post_id}`" class="related-link">
-                    <img :src="relatedPost.next.cover" :alt="relatedPost.next.title" class="related-image">
+                    <ImageWithLoading :src="relatedPost.next.cover" :alt="relatedPost.next.title" classes="related-image" width="100%" height="100%" />
                     <div class="related-content">
                       <h4>{{ relatedPost.next.title }}</h4>
                       <p class="related-excerpt">{{ relatedPost.next.excerpt }}</p>
