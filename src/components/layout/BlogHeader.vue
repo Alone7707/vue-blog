@@ -53,15 +53,11 @@ onBeforeUnmount(() => {
   <header>
     <div class="container">
       <nav class="navbar">
-        <router-link to="/" class="logo">{{blogTitle}}</router-link>
+        <router-link to="/" class="logo">{{ blogTitle }}</router-link>
         <button class="menu-toggle" @click="toggleMenu">☰</button>
         <ul class="nav-menu" :class="{ active: isMenuOpen }">
           <li v-for="item in menuItems" :key="item.name">
-            <router-link 
-              :to="item.path" 
-              :class="{ active: isActive(item.path) }"
-              @click="closeMenu"
-            >
+            <router-link :to="item.path" :class="{ active: isActive(item.path) }" @click="closeMenu">
               {{ item.name }}
             </router-link>
           </li>
@@ -79,7 +75,7 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 header {
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -108,10 +104,7 @@ header {
   font-size: 1.5em;
   cursor: pointer;
   z-index: 101;
-}
-
-.dark-mode .menu-toggle {
-  color: white;
+  color: var(--dark-color);
 }
 
 .nav-menu {
@@ -164,7 +157,7 @@ header {
   .menu-toggle {
     display: block;
   }
-  
+
   .nav-menu {
     position: fixed;
     top: 0;
@@ -182,11 +175,11 @@ header {
     &.active {
       transform: translateY(0);
     }
-    
+
     li {
       margin: 15px 0;
     }
-    
+
     a {
       font-size: 1.2em;
 
@@ -203,10 +196,6 @@ header {
     .dark-mode-button {
       font-size: 1.5em;
     }
-  }
-
-  .dark-mode .nav-menu {
-    background-color: #3f3f3f;
   }
 }
 </style>

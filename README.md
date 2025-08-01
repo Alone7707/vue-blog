@@ -33,6 +33,7 @@ src/
 ├── pages/        # 页面组件
 ├── router/       # 路由配置
 ├── store/        # 状态管理
+├── styles/       # 样式文件
 ├── utils/        # 工具函数
 └── App.vue       # 根组件
 ```
@@ -74,7 +75,7 @@ pnpm preview
 - **Vite**：极速的构建工具
 - **Pinia**：Vue 3 的状态管理库
 - **Vue Router**：官方路由管理器
-- **Sass**：CSS 预处理器
+- **CSS 变量**：用于实现主题和日夜模式
 - **Three.js**：3D图形库，用于实现标签云
 - **highlight.js**：代码语法高亮
 - **marked.js**：Markdown 解析器

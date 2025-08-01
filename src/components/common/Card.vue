@@ -16,15 +16,11 @@ defineProps({
 
 <style lang="scss" scoped>
 .sidebar-widget {
-    background-color: white;
+    background-color: var(--sidebar-background);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     padding: 25px;
     margin-bottom: 30px;
-}
-
-.dark-mode .sidebar-widget {
-    background-color: #3f3f3f;
 }
 
 .widget-title {
@@ -33,9 +29,5 @@ defineProps({
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
     color: var(--dark-color);
-}
-
-.dark-mode .widget-title {
-    border-bottom: 1px solid #aaaaaa;
 }
 </style>

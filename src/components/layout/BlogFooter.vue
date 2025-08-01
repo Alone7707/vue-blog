@@ -73,14 +73,11 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .blog-footer {
-  background-color: var(--dark-color);
+  background-color: var(--footer-background);
   color: white;
   margin-top: auto;
 }
 
-.dark-mode .blog-footer {
-  background-color: #3f3f3f;
-}
 
 .footer-content {
   display: grid;
@@ -197,4 +194,3 @@ onMounted(async () => {
   }
 }
 </style>
-

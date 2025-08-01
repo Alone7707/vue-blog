@@ -48,23 +48,9 @@ onMounted(async () => {
 
 .category-count {
   background-color: var(--light-color);
-  color: #666;
+  color: var(--text-color);
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 0.8em;
-}
-
-/* 夜间模式样式 */
-.dark-mode .category-count {
-  background-color: var(--light-color);
-  color: #aaa;
-}
-
-.dark-mode .category-link {
-  color: var(--text-color);
-}
-
-.dark-mode .category-link:hover {
-  color: var(--primary-color);
 }
 </style>

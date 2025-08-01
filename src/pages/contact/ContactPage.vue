@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useStore } from '@/store'
 import { contactMe } from '@/api'
 import { message } from '@/utils/message'
- 
+
 const store = useStore()
 const form = ref({
   name: '',
@@ -85,48 +85,24 @@ const faqs = [
               <div class="form-row">
                 <div class="form-group">
                   <label for="name">姓名 *</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    v-model="form.name" 
-                    required 
-                    placeholder="请输入您的姓名"
-                  >
+                  <input type="text" id="name" v-model="form.name" required placeholder="请输入您的姓名">
                 </div>
                 <div class="form-group">
                   <label for="email">邮箱 *</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    v-model="form.email" 
-                    required 
-                    placeholder="请输入您的邮箱"
-                  >
+                  <input type="email" id="email" v-model="form.email" required placeholder="请输入您的邮箱">
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <label for="subject">主题 *</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  v-model="form.subject" 
-                  required 
-                  placeholder="请输入消息主题"
-                >
+                <input type="text" id="subject" v-model="form.subject" required placeholder="请输入消息主题">
               </div>
-              
+
               <div class="form-group">
                 <label for="message">消息内容 *</label>
-                <textarea 
-                  id="message" 
-                  v-model="form.message" 
-                  required 
-                  rows="6" 
-                  placeholder="请输入您想说的话..."
-                ></textarea>
+                <textarea id="message" v-model="form.message" required rows="6" placeholder="请输入您想说的话..."></textarea>
               </div>
-              
+
               <button type="submit" class="submit-btn" :disabled="isSubmitting">
                 {{ isSubmitting ? '发送中...' : '发送消息' }}
               </button>
@@ -181,7 +157,7 @@ const faqs = [
 
   p {
     font-size: 1.1em;
-    color: #666;
+    color: var(--text-color);
   }
 }
 
@@ -192,10 +168,10 @@ const faqs = [
 }
 
 .form-container {
-  background-color: white;
+  background-color: var(--card-background);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
   h2 {
     color: var(--dark-color);
@@ -229,10 +205,12 @@ const faqs = [
   input,
   textarea {
     padding: 12px 16px;
-    border: 2px solid #e1e5e9;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-size: 1em;
     transition: border-color 0.3s;
+    background-color: var(--card-background);
+    color: var(--text-color);
 
     &:focus {
       outline: none;
@@ -240,7 +218,7 @@ const faqs = [
     }
 
     &::placeholder {
-      color: #999;
+      color: var(--text-color);
     }
   }
 
@@ -280,10 +258,10 @@ const faqs = [
 
 .contact-methods,
 .faq-section {
-  background-color: white;
+  background-color: var(--card-background);
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
   h2 {
     color: var(--dark-color);
@@ -303,7 +281,7 @@ const faqs = [
   align-items: center;
   gap: 15px;
   padding: 20px 12px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: border-color 0.3s, transform 0.3s;
 
@@ -320,7 +298,7 @@ const faqs = [
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: var(--card-background);
   border-radius: 50%;
 }
 
@@ -342,7 +320,7 @@ const faqs = [
 
 .method-description {
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-color);
 }
 
 .faq-list {
@@ -369,76 +347,8 @@ const faqs = [
 }
 
 .faq-answer {
-  color: #555;
+  color: var(--text-color);
   line-height: 1.6;
-}
-
-/* 夜间模式样式 */
-.dark-mode .form-container {
-  background-color: #3f3f3f;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .page-header p {
-  color: var(--text-color);
-}
-
-.dark-mode .form-group label {
-  color: var(--dark-color);
-}
-
-.dark-mode .form-group input,
-.dark-mode .form-group textarea {
-  background-color: #34495e;
-  border: 2px solid var(--border-color);
-  color: var(--text-color);
-
-  &::placeholder {
-    color: #aaa;
-  }
-}
-
-.dark-mode .contact-methods,
-.dark-mode .faq-section {
-  background-color: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .contact-methods h2,
-.dark-mode .faq-section h2 {
-  color: var(--dark-color);
-}
-
-.dark-mode .method-card {
-  border: 1px solid var(--border-color);
-
-  &:hover {
-    border-color: var(--primary-color);
-  }
-}
-
-.dark-mode .method-icon {
-  background-color: #34495e;
-}
-
-.dark-mode .method-title {
-  color: var(--dark-color);
-}
-
-.dark-mode .method-value {
-  color: var(--primary-color);
-}
-
-.dark-mode .method-description {
-  color: var(--text-color);
-}
-
-.dark-mode .faq-question {
-  color: var(--dark-color);
-}
-
-.dark-mode .faq-answer {
-  color: var(--text-color);
 }
 
 @media (max-width: 992px) {

@@ -92,7 +92,7 @@ getData()
 
   p {
     font-size: 1.1em;
-    color: #666;
+    color: var(--text-color);
   }
 }
 
@@ -103,7 +103,7 @@ getData()
 }
 
 .category-card {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -174,7 +174,7 @@ getData()
   padding: 8px 0;
   text-decoration: none;
   color: var(--text-color);
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-color);
   transition: color 0.3s;
 
   &:hover {
@@ -197,7 +197,7 @@ getData()
 
 .post-date {
   font-size: 0.85em;
-  color: #999;
+  color: var(--text-color);
   margin-left: 15px;
 }
 
@@ -210,29 +210,6 @@ getData()
   &:hover {
     text-decoration: underline;
   }
-}
-
-/* 夜间模式样式 */
-.dark-mode .category-card {
-  background-color: #3f3f3f;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .page-header p {
-  color: var(--text-color);
-}
-
-.dark-mode .category-posts h4 {
-  color: var(--dark-color);
-}
-
-.dark-mode .post-link {
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.dark-mode .post-date {
-  color: var(--text-color);
 }
 
 @media (max-width: 768px) {

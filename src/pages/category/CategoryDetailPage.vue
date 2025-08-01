@@ -141,7 +141,7 @@ const changePage = (page) => {
             </div>
           </div>
         </div>
-        
+
         <!-- 面包屑导航 -->
         <nav class="breadcrumb">
           <router-link to="/">首页</router-link>
@@ -156,13 +156,9 @@ const changePage = (page) => {
         <div class="content-area">
           <!-- 文章列表 -->
           <div v-if="paginatedPosts.length > 0" class="posts-list">
-            <PostCard 
-              v-for="post in paginatedPosts" 
-              :key="post.id" 
-              :post="post" 
-            />
+            <PostCard v-for="post in paginatedPosts" :key="post.id" :post="post" />
           </div>
-          
+
           <!-- 空状态 -->
           <div v-else class="empty-state">
             <div class="empty-icon">📝</div>
@@ -173,33 +169,21 @@ const changePage = (page) => {
 
           <!-- 分页 -->
           <div v-if="totalPages > 1" class="pagination">
-            <button 
-              v-if="currentPage > 1"
-              @click="changePage(currentPage - 1)"
-              class="page-btn"
-            >
+            <button v-if="currentPage > 1" @click="changePage(currentPage - 1)" class="page-btn">
               ← 上一页
             </button>
-            
-            <button
-              v-for="page in totalPages"
-              :key="page"
-              @click="changePage(page)"
-              :class="['page-btn', { active: currentPage === page }]"
-            >
+
+            <button v-for="page in totalPages" :key="page" @click="changePage(page)"
+              :class="['page-btn', { active: currentPage === page }]">
               {{ page }}
             </button>
-            
-            <button 
-              v-if="currentPage < totalPages"
-              @click="changePage(currentPage + 1)"
-              class="page-btn"
-            >
+
+            <button v-if="currentPage < totalPages" @click="changePage(currentPage + 1)" class="page-btn">
               下一页 →
             </button>
           </div>
         </div>
-        
+
         <Sidebar />
       </div>
     </div>
@@ -212,9 +196,9 @@ const changePage = (page) => {
 }
 
 .category-header {
-  background: white;
+  background: var(--card-background);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 40px;
   margin-bottom: 30px;
 }
@@ -245,7 +229,7 @@ const changePage = (page) => {
   }
 
   p {
-    color: #666;
+    color: var(--text-color);
     font-size: 1.1em;
     margin-bottom: 10px;
   }
@@ -254,7 +238,7 @@ const changePage = (page) => {
 .category-stats {
   span {
     background: var(--light-color);
-    color: #666;
+    color: var(--text-color);
     padding: 4px 12px;
     border-radius: 15px;
     font-size: 0.9em;
@@ -281,7 +265,7 @@ const changePage = (page) => {
   }
 
   .current {
-    color: #666;
+    color: var(--text-color);
   }
 }
 
@@ -303,9 +287,9 @@ const changePage = (page) => {
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--card-background);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 
   .empty-icon {
     font-size: 3em;
@@ -318,7 +302,7 @@ const changePage = (page) => {
   }
 
   p {
-    color: #666;
+    color: var(--text-color);
     margin-bottom: 30px;
   }
 
@@ -346,66 +330,12 @@ const changePage = (page) => {
 
 .page-btn {
   padding: 10px 16px;
-  border: 1px solid #ddd;
-  background: white;
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
   color: var(--text-color);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s;
-
-  &:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-  }
-
-  &.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-  }
-}
-
-/* 夜间模式样式 */
-.dark-mode .category-header {
-  background: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .category-text p {
-  color: var(--text-color);
-}
-
-.dark-mode .category-stats span {
-  background: var(--light-color);
-  color: var(--text-color);
-}
-
-.dark-mode .breadcrumb .separator {
-  color: #aaa;
-}
-
-.dark-mode .breadcrumb .current {
-  color: var(--text-color);
-}
-
-.dark-mode .empty-state {
-  background: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-
-  h3 {
-    color: var(--dark-color);
-  }
-
-  p {
-    color: var(--text-color);
-  }
-}
-
-.dark-mode .page-btn {
-  border: 1px solid var(--border-color);
-  background: #3f3f3f;
-  color: var(--text-color);
 
   &:hover {
     background: var(--primary-color);

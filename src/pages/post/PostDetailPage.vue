@@ -276,14 +276,14 @@ onUnmounted(() => {
 
 .post-content {
   flex: 2;
-  background: white;
+  background: var(--card-background);
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
 .catalogue {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 25px;
@@ -371,8 +371,9 @@ onUnmounted(() => {
   align-items: center;
   gap: 5px;
   padding: 8px 16px;
-  border: 1px solid #ddd;
-  background: white;
+  border: 1px solid var(--border-color);
+  background: var(--card-background);
+  color: var(--text-color);
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s;
@@ -436,8 +437,8 @@ onUnmounted(() => {
   }
 
   :deep(pre) {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
+    background: var(--light-color);
+    border: 1px solid var(--border-color);
     // border-radius: 6px;
     padding: 15px;
     overflow-x: auto;
@@ -445,7 +446,7 @@ onUnmounted(() => {
   }
 
   :deep(code) {
-    background: #f8f9fa;
+    background: var(--light-color);
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Courier New', monospace;
@@ -468,7 +469,7 @@ onUnmounted(() => {
 }
 
 .tag {
-  color: #666;
+  color: var(--text-color);
   padding: 4px 12px;
   border-radius: 15px;
   font-size: 0.8em;
@@ -508,111 +509,6 @@ onUnmounted(() => {
   &.qq {
     background-color: #12b7f5;
   }
-}
-
-/* 夜间模式样式 */
-.dark-mode .post-content {
-  background: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .catalogue {
-  background-color: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .post-date,
-.dark-mode .post-read-time {
-  color: #aaa;
-}
-
-.dark-mode .post-title {
-  color: var(--dark-color);
-}
-
-.dark-mode .post-info {
-  border-bottom: 1px solid var(--border-color);
-}
-
-.dark-mode .author-name {
-  color: var(--dark-color);
-}
-
-.dark-mode .post-stats {
-  color: #aaa;
-}
-
-.dark-mode .action-btn {
-  border: 1px solid var(--border-color);
-  background: #3f3f3f;
-  color: var(--text-color);
-
-  &:hover {
-    background: var(--light-color);
-    border-color: var(--primary-color);
-  }
-}
-
-.dark-mode .post-body {
-  color: var(--text-color);
-
-  :deep(h2) {
-    color: var(--dark-color);
-  }
-
-  :deep(h3) {
-    color: var(--dark-color);
-  }
-
-  :deep(blockquote) {
-    background: var(--light-color);
-    border-left: 4px solid var(--primary-color);
-  }
-
-  :deep(pre) {
-    background: #222222;
-    border: 1px solid var(--border-color);
-  }
-
-  :deep(code) {
-    background: #222222;
-    color: var(--text-color);
-  }
-}
-
-.dark-mode .tags-label {
-  color: #aaa;
-}
-
-.dark-mode .tag {
-  background: #7b7b7b;
-  color: #ffffff;
-}
-
-.dark-mode .post-share h4 {
-  color: var(--dark-color);
-}
-
-.dark-mode .share-btn {
-  &.weibo {
-    background-color: #e6162d;
-  }
-
-  &.wechat {
-    background-color: #07c160;
-  }
-
-  &.qq {
-    background-color: #12b7f5;
-  }
-
-  &.wechat {
-    background: #07c160;
-  }
-
-  &.qq {
-    background: #12b7f5;
-  }
 
   &:hover {
     opacity: 0.8;
@@ -641,24 +537,20 @@ onUnmounted(() => {
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--card-background);
   padding: 0 12px;
+
+  .related-excerpt {
+    color: var(--text-color);
+  }
+
+  .related-date {
+    color: var(--text-color);
+  }
 
   &:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     transform: translateY(-3px);
-  }
-}
-
-.dark-mode .related-item {
-  background: #666666;
-
-  .related-excerpt {
-    color: #ccc;
-  }
-
-  .related-date {
-    color: #aaa;
   }
 }
 

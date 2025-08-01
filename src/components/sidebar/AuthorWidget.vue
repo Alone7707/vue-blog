@@ -55,19 +55,6 @@ const author = {
 .author-details p:last-child {
   font-size: 0.9em;
   line-height: 1.5;
-  color: #666;
-}
-
-/* 夜间模式样式 */
-.dark-mode .author-details p:last-child {
-  color: #aaa;
-}
-
-.dark-mode .author-name {
-  color: var(--dark-color);
-}
-
-.dark-mode .author-bio {
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 </style>

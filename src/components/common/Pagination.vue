@@ -138,7 +138,7 @@ const changePage = (page) => {
   background-color: white;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  color: var(--text-color);
+  color: var(--dark-text-color);
   cursor: pointer;
   transition: all 0.3s;
   font-size: 14px;
@@ -158,22 +158,6 @@ const changePage = (page) => {
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
-  }
-}
-
-.dark-mode .page-btn {
-  color: #666666;
-
-  &:hover {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-  }
-
-  &.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
   }
 }
 

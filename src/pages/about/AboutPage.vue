@@ -149,7 +149,7 @@ const aboutMe = {
 }
 
 .content-section {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 12px;
   padding: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -173,7 +173,7 @@ const aboutMe = {
   p {
     line-height: 1.8;
     margin-bottom: 15px;
-    color: #555;
+    color: var(--text-color);
   }
 }
 
@@ -211,7 +211,7 @@ const aboutMe = {
   width: 50px;
   text-align: right;
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-color);
 }
 
 .timeline {
@@ -254,7 +254,7 @@ const aboutMe = {
 }
 
 .timeline-content {
-  color: #555;
+  color: var(--text-color);
   line-height: 1.6;
 }
 
@@ -280,32 +280,6 @@ const aboutMe = {
 .contact-label {
   font-weight: 500;
   width: 80px;
-  color: var(--dark-color);
-}
-
-/* 夜间模式样式 */
-.dark-mode .content-section {
-  background-color: #3f3f3f;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode .section p {
-  color: var(--text-color);
-}
-
-.dark-mode .skill-bar {
-  background-color: var(--light-color);
-}
-
-.dark-mode .skill-level {
-  color: var(--text-color);
-}
-
-.dark-mode .timeline-content {
-  color: var(--text-color);
-}
-
-.dark-mode .contact-label {
   color: var(--dark-color);
 }
 

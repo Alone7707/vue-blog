@@ -28,7 +28,7 @@ const formatDate = computed(() => {
         <span>
           <i>🏷️</i> 
           <template v-for="(tag, index) in post.tags" :key="tag">
-            <a href="#">{{ tag.name }}</a>
+            <router-link :to="`/tag/${tag.tag_id}`">{{ tag.name }}</router-link>
             <span v-if="index < post.tags.length - 1">, </span>
           </template>
         </span>
@@ -42,7 +42,7 @@ const formatDate = computed(() => {
 
 <style lang="scss" scoped>
 .post-card {
-  background: white;
+  background-color: var(--card-background);
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   overflow: hidden;
@@ -141,10 +141,6 @@ const formatDate = computed(() => {
   &:hover {
     color: var(--secondary-color);
   }
-}
-
-.dark-mode .post-card {
-  background-color: #3f3f3f;
 }
 
 @media (max-width: 768px) {
