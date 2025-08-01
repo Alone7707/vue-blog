@@ -12,7 +12,6 @@ export const useStore = defineStore('main', {
                 { name: '首页', path: '/' },
                 { name: '关于', path: '/about' },
                 { name: '分类', path: '/category' },
-                { name: '归档', path: '/archive' },
                 { name: '联系', path: '/contact' }
             ]
         }

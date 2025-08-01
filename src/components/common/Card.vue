@@ -34,4 +34,8 @@ defineProps({
     border-bottom: 1px solid var(--border-color);
     color: var(--dark-color);
 }
+
+.dark-mode .widget-title {
+    border-bottom: 1px solid #aaaaaa;
+}
 </style>

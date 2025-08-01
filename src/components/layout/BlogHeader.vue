@@ -110,6 +110,10 @@ header {
   z-index: 101;
 }
 
+.dark-mode .menu-toggle {
+  color: white;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;
@@ -199,6 +203,10 @@ header {
     .dark-mode-button {
       font-size: 1.5em;
     }
+  }
+
+  .dark-mode .nav-menu {
+    background-color: #3f3f3f;
   }
 }
 </style>

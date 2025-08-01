@@ -296,7 +296,7 @@ function easeOutCubic(t) {
 
 /* 夜间模式样式 */
 .dark-mode .sidebar-widget {
-  background-color: #3f3f3f;
+  background-color: #505050;
 }
 
 .dark-mode .widget-title {

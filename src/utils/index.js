@@ -1,5 +1,5 @@
 // 日期格式化 使用方法： dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss')
-export const dateFormat = (date, format) => {
+export const dateFormat = (date, format = 'yyyy-MM-dd') => {
   const d = new Date(date)
   const o = {
     'M+': d.getMonth() + 1,

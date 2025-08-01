@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+import { useStore } from '@/store'
+import { contactMe } from '@/api'
+import { message } from '@/utils/message'
 
+const store = useStore()
 const form = ref({
   name: '',
   email: '',
@@ -12,38 +16,36 @@ const isSubmitting = ref(false)
 
 const submitForm = async () => {
   isSubmitting.value = true
-  // 模拟提交
-  setTimeout(() => {
-    alert('消息已发送！感谢您的联系。')
-    form.value = { name: '', email: '', subject: '', message: '' }
+  contactMe(form.value).then(res => {
+    if (res.code === 200) {
+      message.success('消息已发送！感谢您的联系。')
+      form.value = { name: '', email: '', subject: '', message: '' }
+    }
+  }).catch(err => {
+    message.error('消息发送失败，请稍后重试。')
+  }).finally(() => {
     isSubmitting.value = false
-  }, 1000)
+  })
 }
 
 const contactMethods = [
   {
     icon: '📧',
     title: '邮箱',
-    value: 'zhang.explore@example.com',
+    value: store.blogInfo.mail,
     description: '工作日24小时内回复'
   },
   {
     icon: '💬',
     title: '微信',
-    value: 'zhang_explore',
+    value: store.blogInfo.wechat,
     description: '扫码添加好友'
   },
   {
     icon: '🐙',
     title: 'GitHub',
-    value: 'github.com/zhangexplore',
+    value: store.blogInfo.github,
     description: '查看我的开源项目'
-  },
-  {
-    icon: '📱',
-    title: '微博',
-    value: '@张探索',
-    description: '关注我的日常动态'
   }
 ]
 
@@ -147,7 +149,7 @@ const faqs = [
             </div>
           </div>
 
-          <!-- <div class="faq-section">
+          <div class="faq-section">
             <h2>常见问题</h2>
             <div class="faq-list">
               <div v-for="faq in faqs" :key="faq.question" class="faq-item">
@@ -155,7 +157,7 @@ const faqs = [
                 <p class="faq-answer">{{ faq.answer }}</p>
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

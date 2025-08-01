@@ -16,7 +16,7 @@ export const blogInfo = () => {
 }
 
 // 文章列表
-export const newsPosts = (params) => {
+export const postList = (params) => {
   return http.post('/blog/posts/list', params)
 }
 
@@ -38,4 +38,9 @@ export const allCategories = () => {
 // 所有标签
 export const allTags = () => {
   return http.get('/blog/tags/all')
+}
+
+// 联系我
+export const contactMe = (data) => {
+  return http.post('/blog/posts/contact', data)
 }

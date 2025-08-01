@@ -33,12 +33,6 @@ const routes = [
     meta: { title: '文章详情' }
   },
   {
-    path: '/archive',
-    name: 'Archive',
-    component: () => import('@/pages/archive/ArchivePage.vue'),
-    meta: { title: '归档' }
-  },
-  {
     path: '/contact',
     name: 'Contact',
     component: () => import('@/pages/contact/ContactPage.vue'),

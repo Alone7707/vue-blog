@@ -3,7 +3,7 @@ import PostCard from '@/components/blog/PostCard.vue'
 import Sidebar from '@/components/sidebar/Sidebar.vue'
 import Loading from '@/components/common/Loading.vue'
 import Pagination from '@/components/common/Pagination.vue'
-import { newsPosts } from '@/api'
+import { postList } from '@/api'
 import { ref } from 'vue'
 
 const postsParams = {
@@ -22,7 +22,7 @@ const getData = (page) => {
   postsParams.pageNum = page
   window.scrollTo({ top: 0, behavior: 'smooth' })
   loading.value = true
-  newsPosts(postsParams).then((res) => {
+  postList(postsParams).then((res) => {
     const { data, code } = res
     if (code === 200) {
       posts.list = data.list

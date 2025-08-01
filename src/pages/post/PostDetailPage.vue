@@ -257,7 +257,8 @@ onUnmounted(() => {
             </div>
           </template>
         </article>
-        <Sidebar />
+        <Sidebar>
+        </Sidebar>
       </div>
     </div>
   </div>
@@ -467,7 +468,6 @@ onUnmounted(() => {
 }
 
 .tag {
-  background: var(--light-color);
   color: #666;
   padding: 4px 12px;
   border-radius: 15px;
@@ -570,12 +570,12 @@ onUnmounted(() => {
   }
 
   :deep(pre) {
-    background: #34495e;
+    background: #222222;
     border: 1px solid var(--border-color);
   }
 
   :deep(code) {
-    background: #34495e;
+    background: #222222;
     color: var(--text-color);
   }
 }
@@ -585,8 +585,8 @@ onUnmounted(() => {
 }
 
 .dark-mode .tag {
-  background: var(--light-color);
-  color: var(--text-color);
+  background: #7b7b7b;
+  color: #ffffff;
 }
 
 .dark-mode .post-share h4 {
@@ -647,6 +647,18 @@ onUnmounted(() => {
   &:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     transform: translateY(-3px);
+  }
+}
+
+.dark-mode .related-item {
+  background: #666666;
+
+  .related-excerpt {
+    color: #ccc;
+  }
+
+  .related-date {
+    color: #aaa;
   }
 }
 

@@ -1,58 +1,39 @@
 <script setup>
-const categories = [
-  {
-    id: 1,
-    name: '技术思考',
-    description: '关于编程、技术发展和软件工程的思考',
-    count: 24,
-    color: '#3498db',
-    icon: '💻',
-    posts: [
-      { title: '探索人工智能的边界', date: '2024年1月15日' },
-      { title: 'Vue.js 3.0 实践心得', date: '2024年1月10日' },
-      { title: '前端工程化的思考', date: '2024年1月5日' }
-    ]
-  },
-  {
-    id: 2,
-    name: '生活随笔',
-    description: '记录生活中的点点滴滴和感悟',
-    count: 18,
-    color: '#e74c3c',
-    icon: '📝',
-    posts: [
-      { title: '城市漫步：发现身边的美丽', date: '2024年1月12日' },
-      { title: '咖啡馆里的思考时光', date: '2024年1月8日' },
-      { title: '周末的慢生活', date: '2024年1月3日' }
-    ]
-  },
-  {
-    id: 3,
-    name: '读书笔记',
-    description: '阅读心得和书籍推荐',
-    count: 12,
-    color: '#f39c12',
-    icon: '📚',
-    posts: [
-      { title: '《深度工作》读后感', date: '2024年1月14日' },
-      { title: '《原则》中的人生智慧', date: '2024年1月9日' },
-      { title: '技术类书籍推荐清单', date: '2024年1月4日' }
-    ]
-  },
-  {
-    id: 4,
-    name: '旅行见闻',
-    description: '旅途中的见闻和摄影作品',
-    count: 8,
-    color: '#27ae60',
-    icon: '🌍',
-    posts: [
-      { title: '江南水乡的诗意', date: '2024年1月11日' },
-      { title: '山间徒步的收获', date: '2024年1月6日' },
-      { title: '古镇里的时光', date: '2024年1月1日' }
-    ]
-  }
-]
+import { ref } from 'vue'
+import { allCategories } from '@/api'
+import Loading from '@/components/common/Loading.vue'
+import { dateFormat } from '@/utils'
+
+const loading = ref(false)
+const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#16a085']
+const categories = ref([
+  // {
+  //   id: 1,
+  //   name: '技术思考',
+  //   description: '关于编程、技术发展和软件工程的思考',
+  //   count: 24,
+  //   color: '#3498db',
+  //   icon: '💻',
+  //   posts: [
+  //     { title: '探索人工智能的边界', date: '2024年1月15日' },
+  //     { title: 'Vue.js 3.0 实践心得', date: '2024年1月10日' },
+  //     { title: '前端工程化的思考', date: '2024年1月5日' }
+  //   ]
+  // },
+])
+const getData = () => {
+  loading.value = true
+  allCategories().then(res => {
+    const { code, data } = res
+    if (code === 200) {
+      categories.value = data
+    }
+  }).finally(() => {
+    loading.value = false
+  })
+}
+
+getData()
 </script>
 
 <template>
@@ -64,31 +45,27 @@ const categories = [
       </div>
 
       <div class="categories-grid">
-        <div v-for="category in categories" :key="category.id" class="category-card">
-          <router-link 
-            :to="`/category/${category.name}`"
-            class="category-header" 
-            :style="{ backgroundColor: category.color }"
-          >
-            <div class="category-icon">{{ category.icon }}</div>
+        <Loading v-if="loading" />
+        <div v-for="(category, index) in categories" :key="category.id" class="category-card">
+          <router-link :to="`/category/${category.category_id}`" class="category-header"
+            :style="{ backgroundColor: colors[index] }">
             <div class="category-info">
               <h3 class="category-name">{{ category.name }}</h3>
-              <p class="category-description">{{ category.description }}</p>
               <div class="category-count">{{ category.count }} 篇文章</div>
             </div>
           </router-link>
-          
+
           <div class="category-posts">
             <h4>最新文章</h4>
             <ul class="post-list">
-              <li v-for="post in category.posts" :key="post.title" class="post-item">
-                <a href="#" class="post-link">
+              <li v-for="post in category.latestPosts" :key="post.title" class="post-item">
+                <router-link :to="`/post/${post.post_id}`" class="post-link">
                   <span class="post-title">{{ post.title }}</span>
-                  <span class="post-date">{{ post.date }}</span>
-                </a>
+                  <span class="post-date">{{ dateFormat(post.created_at) }}</span>
+                </router-link>
               </li>
             </ul>
-            <router-link :to="`/category/${category.name}`" class="view-all">
+            <router-link :to="`/category/${category.category_id}`" class="view-all">
               查看全部 →
             </router-link>
           </div>
@@ -121,20 +98,20 @@ const categories = [
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
 .category-card {
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -149,13 +126,8 @@ const categories = [
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
-}
-
-.category-icon {
-  font-size: 2.5em;
-  opacity: 0.9;
 }
 
 .category-info {
@@ -165,12 +137,6 @@ const categories = [
 .category-name {
   font-size: 1.5em;
   margin-bottom: 8px;
-}
-
-.category-description {
-  opacity: 0.9;
-  margin-bottom: 10px;
-  line-height: 1.4;
 }
 
 .category-count {
@@ -224,6 +190,9 @@ const categories = [
   flex: 1;
   font-size: 0.95em;
   transition: color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-date {
@@ -290,6 +259,18 @@ const categories = [
 
   .post-date {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

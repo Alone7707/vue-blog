@@ -1,8 +1,11 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import { useStore } from '@/store';
 import { computed } from 'vue'
+import { usePostStore } from '@/store/posts'
 
 const store = useStore()
+const postStore = usePostStore()
 const currentYear = new Date().getFullYear()
 
 const socialLinks = computed(() => [
@@ -11,7 +14,13 @@ const socialLinks = computed(() => [
   { name: '邮箱', url: 'mailto:' + (store.blogInfo?.mail || ''), icon: '📧' }
 ])
 
+const posts = ref([])
+
 const quickLinks = store.routeList
+
+onMounted(async () => {
+  posts.value = await postStore.getNewPosts
+})
 </script>
 
 <template>
@@ -41,9 +50,9 @@ const quickLinks = store.routeList
         <div class="footer-section">
           <h3>最新文章</h3>
           <ul class="recent-posts">
-            <li><a href="#">探索人工智能的边界</a></li>
-            <li><a href="#">Vue.js 3.0 实践心得</a></li>
-            <li><a href="#">城市漫步：发现身边的美丽</a></li>
+            <li v-for="post in posts" :key="post.post_id">
+              <router-link :to="'/post/' + post.post_id">{{ post.title }}</router-link>
+            </li>
           </ul>
         </div>
       </div>
