@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  blog-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: blog-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - blog-network
+
+networks:
+  blog-network:
+    driver: bridge
+

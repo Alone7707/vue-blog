@@ -44,3 +44,8 @@ export const allTags = () => {
 export const contactMe = (data) => {
   return http.post('/blog/posts/contact', data)
 }
+
+// 关于我
+export const getAbout = () => {
+  return http.get('/blog/about')
+}

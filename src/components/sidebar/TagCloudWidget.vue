@@ -268,7 +268,7 @@ function easeOutCubic(t) {
 
 <style lang="scss" scoped>
 .sidebar-widget {
-  background-color: var(--sidebar-background);
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 25px;
@@ -292,5 +292,14 @@ function easeOutCubic(t) {
   canvas {
     border-radius: 8px;
   }
+}
+
+/* 夜间模式样式 */
+.dark-mode .sidebar-widget {
+  background-color: var(--sidebar-background);
+}
+
+.dark-mode .widget-title {
+  color: var(--dark-color);
 }
 </style>
